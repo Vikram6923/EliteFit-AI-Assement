@@ -37,7 +37,28 @@
         <div class="last-part-nav">
             <img src="images/shopping_vector.png" alt="">
             <a href=""><img src="images/Vector.png" alt=""></a>
-            <a class="hidding_in_lap" href=""><img src="logos/Vector.png" alt=""></a>
+            <!-- on click, call a function that toggle mobile_nav -->
+            <a class="hidding_in_lap" onclick="toggleMobileNav()"><img src="logos/Vector.png" alt=""></a>
+        </div>
+        <div class="mobile_nav mobile_hidden">
+            <a onclick="toggleMobileNav()"><img src="logos/cross.png" alt=""></a>
+            <ul>
+                <li class="">
+                    <a class="" href="#"><b>NEW</b></a>
+                </li>
+                <li class="">
+                    <a class="" href="#"><b>BRANDS</b></span></a>
+                </li>
+                <li class="">
+                    <a class="" href="#"><b>COLLECTIONS</b></span></a>
+                </li>
+                <li class="">
+                    <a class="" href="#"><b>ACCESORIES</b></span></a>
+                </li>
+                <li class="">
+                    <a class="" href="#five"><b>ABOUT</b></span></a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="zero"></div>
@@ -101,9 +122,8 @@
             <h1>TESTIMONIAL</h1>
             <br><br><br>
             <div class="review" id="testimonials">
-
             </div>
-    
+            <br><br>
             <div class="end">
                 <br><h2>PISTONS</h2>
                 <h2>STAY CONNECTED</h2><br>
@@ -144,26 +164,39 @@
         }
     ]
 }
-                    var testimonialsDiv = document.getElementById("testimonials");
-                    dat.testimonials.forEach(function (testimonial) {
-                        var testimonialContainer = document.createElement("div");
-                        testimonialContainer.className = "testimonial";
+        var testimonialsDiv = document.getElementById("testimonials");
+        dat.testimonials.forEach(function (testimonial) {
+            var testimonialContainer = document.createElement("div");
+            testimonialContainer.className = "testimonial";
 
-                        var imageElement = document.createElement("img");
-                        imageElement.src = testimonial.image;
+            var imageElement = document.createElement("img");
+            imageElement.src = testimonial.image;
                         
-                        var nameElement = document.createElement("p");
-                        nameElement.innerText = "Name: " + testimonial.name;
+            var divElement = document.createElement("div");
+            divElement.className = "text";
 
-                        var messageElement = document.createElement("p");
-                        messageElement.innerText = "Message: " + testimonial.message;
+            var nameElement = document.createElement("h2");
+            nameElement.innerText = "Name: " + testimonial.name;
 
-                        testimonialContainer.appendChild(nameElement);
-                        testimonialContainer.appendChild(messageElement);
-                        testimonialContainer.appendChild(imageElement);
+            var messageElement = document.createElement("p");
+            messageElement.innerText = "Message: " + testimonial.message;
 
-                        testimonialsDiv.appendChild(testimonialContainer);
-                    });
+            testimonialContainer.appendChild(imageElement);
+            divElement.appendChild(nameElement);
+            divElement.appendChild(messageElement);
+            testimonialContainer.appendChild(divElement);
+
+            testimonialsDiv.appendChild(testimonialContainer);
+        });
+        
+
+        // define funciton toggleMobileNav() which finds mobile_nav and toggles mobile_hidden class in it
+        function toggleMobileNav() {
+            var mobileNav = document.querySelector(".mobile_nav");
+            mobileNav.classList.toggle("mobile_hidden");
+            // prevent default behavior of the link
+            event.preventDefault();
+        }
     </script>
 </body>
 
